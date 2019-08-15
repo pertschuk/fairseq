@@ -3,6 +3,8 @@
 wget -N 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/encoder.json'
 wget -N 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe'
 
+export OUTPUT_DIR=fever_output
+export DATA_DIR=fever
 
 for SPLIT in train dev; do
     for INPUT in 0 1; do
