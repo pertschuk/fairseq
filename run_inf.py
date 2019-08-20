@@ -1,9 +1,15 @@
 from fairseq.models.roberta import RobertaModel
 
-roberta = RobertaModel.from_pretrained('./fever_output/', checkpoint_file='checkpoint_best.pt')
-roberta.eval()  # disable dropout (or leave in train mode to finetune)
+MODEL_DIR = './fever_output/'
+CHECKPOINT_FILE = 'checkpoint_best.pt'
+CLASSES = ['SUPPORTS', 'REFUTES', 'NOT ENOUGH INFO']
 
-tokens = roberta.encode('Roberta is a heavily optimized version of BERT.', 'Roberta is not very optimized.')
-res = roberta.predict('fever', tokens).argmax()
+def load_model(model_dir=MODEL_DIR,ckpt_file=CHECKPOINT_FILE):
+  roberta = RobertaModel.from_pretrained(model_dir, checkpoint_file=ckpt_file)
+  roberta.eval() # disable dropout
+  return roberta
 
-print(res)
+def classify_fever(roberta, claim, evidence):
+  tokens = roberta.encode(claim, evidence)
+  res = roberta.predict('sentence_classification_head', tokens).argmax()
+  return CLASSES[res]
