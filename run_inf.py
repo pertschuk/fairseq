@@ -19,3 +19,9 @@ class Roberta (object):
     labels = roberta.predict('sentence_classification_head', batch).argmax(dim=1)
     labels = [CLASSES[label] for label in labels]
     return labels
+
+  def get_embedding(self, sentence):
+    roberta = self.model
+    tokens = roberta.encode(sentence)
+    last_layer_features = roberta.extract_features(tokens)
+    return last_layer_features[0]
