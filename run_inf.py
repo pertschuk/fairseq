@@ -20,8 +20,11 @@ class Roberta (object):
     labels = [CLASSES[label] for label in labels]
     return labels
 
-  def get_embedding(self, sentence):
+  def get_embedding(self, sentence, pooling_strategy='cls'):
     roberta = self.model
     tokens = roberta.encode(sentence)
     last_layer_features = roberta.extract_features(tokens)
-    return last_layer_features[0]
+    if pooling_strategy == 'cls':
+      return last_layer_features[0]
+    elif pooling_strategy == 'mean':
+      return last_layer_features.mean(dim=1)
