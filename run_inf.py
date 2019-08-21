@@ -7,7 +7,7 @@ import random
 
 MODEL_DIR = './airbnb_train/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
-CLASSES = ['GREAT', 'NOT_GREAT']
+CLASSES = ['NOT_GREAT', 'GREAT']
 
 CHUNK_SIZE=3
 
