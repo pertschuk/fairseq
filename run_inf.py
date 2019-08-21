@@ -29,7 +29,7 @@ class Roberta (object):
     chunks = []
     for sent in sents:
       buffer.append(sent)
-      if (len(buffer)) % 4 == 0:
+      if (len(buffer)) % 3 == 0:
         chunks.append(" ".join(buffer))
         buffer = [buffer[random.randint(0,3)]]
     chunks.append(" ".join(buffer))
