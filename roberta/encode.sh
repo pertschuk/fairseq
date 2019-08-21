@@ -7,7 +7,7 @@ export OUTPUT_DIR=airbnb_train
 export DATA_DIR=airbnb_data
 
 for SPLIT in train dev; do
-    for INPUT in 0 1; do
+    for INPUT in 0; do
         python -m examples.roberta.multiprocessing_bpe_encoder \
             --encoder-json encoder.json \
             --vocab-bpe vocab.bpe \

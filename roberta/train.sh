@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-TOTAL_NUM_UPDATES=7812  # 10 epochs through IMDB for bsz 32
+export TOTAL_NUM_UPDATES=7812  # 10 epochs through IMDB for bsz 32
 
-WARMUP_UPDATES=7432      # 6 percent of the number of updates
-LR=1e-05                # Peak LR for polynomial LR scheduler.
-NUM_CLASSES=3
-MAX_SENTENCES=8        # Batch size.
-ROBERTA_PATH=roberta.large/model.pt
+export WARMUP_UPDATES=7432      # 6 percent of the number of updates
+export LR=1e-05                # Peak LR for polynomial LR scheduler.
+export NUM_CLASSES=2
+export MAX_SENTENCES=8        # Batch size.
+export ROBERTA_PATH=roberta.large/model.pt
 
-CUDA_VISIBLE_DEVICES=0 python train.py airbnb_output/ \
+CUDA_VISIBLE_DEVICES=0 python train.py airbnb_train/ \
     --restore-file $ROBERTA_PATH \
     --max-positions 512 \
     --max-sentences $MAX_SENTENCES \
