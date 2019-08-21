@@ -9,30 +9,27 @@ def main(args):
   for split in ['train', 'test']:
     samples = []
     fname = os.path.join(args.datadir, split + '.tsv')
-    labels = ['supports', 'refutes', 'not enough info']
+    labels = ['not great', 'great']
     labelMap = dict()
     for i, label in enumerate(labels):
       labelMap[label] = i
     with open(fname) as file:
       for row in csv.reader(file, delimiter='\t'):
-        samples.append((row[1], row[2], labelMap[row[3]]))
+        samples.append((row[2], row[3]))
 
     random.shuffle(samples)
     out_fname = 'train' if split == 'train' else 'dev'
     f1 = open(os.path.join(args.datadir, out_fname + '.input0'), 'w+')
-    f2 = open(os.path.join(args.datadir, out_fname + '.input1'), 'w+')
-    f3 = open(os.path.join(args.datadir, out_fname + '.label'), 'w+')
+    f2 = open(os.path.join(args.datadir, out_fname + '.label'), 'w+')
     for sample in samples:
       f1.write(sample[0] + '\n')
-      f2.write(sample[1] + '\n')
-      f3.write(str(sample[2]) + '\n')
+      f2.write(str(sample[1]) + '\n')
 
     f1.close()
     f2.close()
-    f3.close()
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
-  parser.add_argument('--datadir', default='fever')
+  parser.add_argument('--datadir', default='.')
   args = parser.parse_args()
   main(args)

@@ -8,7 +8,7 @@ NUM_CLASSES=3
 MAX_SENTENCES=8        # Batch size.
 ROBERTA_PATH=roberta.large/model.pt
 
-CUDA_VISIBLE_DEVICES=0 python train.py fever_output/ \
+CUDA_VISIBLE_DEVICES=0 python train.py airbnb_output/ \
     --restore-file $ROBERTA_PATH \
     --max-positions 512 \
     --max-sentences $MAX_SENTENCES \
