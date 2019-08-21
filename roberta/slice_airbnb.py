@@ -8,7 +8,7 @@ from snorkel.augmentation import PandasTFApplier
 import numpy as np
 import random
 
-# nltk.download("wordnet")
+nltk.download("wordnet")
 
 import names
 
