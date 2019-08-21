@@ -14,7 +14,9 @@ def main(args):
     for i, label in enumerate(labels):
       labelMap[label] = i
     with open(fname) as file:
-      for row in csv.reader(file, delimiter='\t'):
+      reader = csv.reader(file, delimiter='\t')
+      next(reader, None)
+      for row in reader:
         samples.append((row[2], row[3]))
 
     random.shuffle(samples)
