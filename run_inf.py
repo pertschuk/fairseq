@@ -22,7 +22,7 @@ class Roberta (object):
     reviews = self.batch_review(review)
     roberta = self.model
     tokens = map(lambda x: x if len(x) < 512 else x[:511], [roberta.encode(r) for r in reviews])
-    batch = collate_tokens(tokens, pad_idx=1)
+    batch = collate_tokens(list(tokens), pad_idx=1)
     label = roberta.predict('sentence_classification_head', batch)
     return CLASSES[label.sum(dim=0).argmax()]
 
