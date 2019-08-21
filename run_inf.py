@@ -9,6 +9,8 @@ MODEL_DIR = './airbnb_train/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
 CLASSES = ['GREAT', 'NOT_GREAT']
 
+CHUNK_SIZE=3
+
 class Roberta (object):
   def __init__(self,model_dir=MODEL_DIR,ckpt_file=CHECKPOINT_FILE,
                  use_gpu=False):
@@ -29,9 +31,9 @@ class Roberta (object):
     chunks = []
     for sent in sents:
       buffer.append(sent)
-      if (len(buffer)) % 3 == 0:
+      if (len(buffer)) % CHUNK_SIZE == 0:
         chunks.append(" ".join(buffer))
-        buffer = [buffer[random.randint(0,3)]]
+        buffer = [buffer[random.randint(0,CHUNK_SIZE-1)]]
     chunks.append(" ".join(buffer))
     return chunks
 
