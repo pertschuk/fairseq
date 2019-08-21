@@ -5,7 +5,7 @@ import nltk
 import random
 
 
-MODEL_DIR = './airbnb_training/'
+MODEL_DIR = './airbnb_train/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
 CLASSES = ['GREAT', 'NOT_GREAT']
 
@@ -29,7 +29,7 @@ class Roberta (object):
     chunks = []
     for sent in sents:
       buffer.append(sent)
-      if (len(buffer)) % 3 == 0:
+      if (len(buffer)) % 5 == 0:
         chunks.append(" ".join(buffer))
         buffer = [buffer[random.randint(0,2)]]
     if len(buffer) > 1:
