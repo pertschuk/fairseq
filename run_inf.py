@@ -31,9 +31,8 @@ class Roberta (object):
       buffer.append(sent)
       if (len(buffer)) % 4 == 0:
         chunks.append(" ".join(buffer))
-        buffer = [buffer[random.randint(0,2)]]
-    if len(buffer) > 1:
-      chunks.append(" ".join(buffer))
+        buffer = [buffer[random.randint(0,3)]]
+    chunks.append(" ".join(buffer))
     return chunks
 
   #
