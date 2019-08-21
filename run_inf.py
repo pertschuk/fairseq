@@ -2,9 +2,9 @@ from fairseq.models.roberta import RobertaModel
 from fairseq.data.data_utils import collate_tokens
 
 
-MODEL_DIR = './fever_output/'
+MODEL_DIR = './airbnb_training/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
-CLASSES = ['SUPPORTS', 'REFUTES', 'NOT ENOUGH INFO']
+CLASSES = ['GREAT', 'NOT_GREAT']
 
 class Roberta (object):
   def __init__(self,model_dir=MODEL_DIR,ckpt_file=CHECKPOINT_FILE,
