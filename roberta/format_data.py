@@ -23,6 +23,7 @@ def main(args):
     f2 = open(os.path.join(args.datadir, out_fname + '.label'), 'w+')
     for sample in samples:
       f1.write(sample[0] + '\n')
+      print(sample[1])
       assert(sample[1] in [0, 1])
       f2.write(str(sample[1]) + '\n')
 
