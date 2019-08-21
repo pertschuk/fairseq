@@ -3,8 +3,8 @@
 wget -N 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/encoder.json'
 wget -N 'https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe'
 
-export OUTPUT_DIR=fever_output
-export DATA_DIR=fever
+export OUTPUT_DIR=airbnb_train
+export DATA_DIR=airbnb_data
 
 for SPLIT in train dev; do
     for INPUT in 0 1; do
@@ -27,14 +27,6 @@ fairseq-preprocess \
     --trainpref "$DATA_DIR/train.input0.bpe" \
     --validpref "$DATA_DIR/dev.input0.bpe" \
     --destdir "$OUTPUT_DIR/input0" \
-    --workers 60 \
-    --srcdict dict.txt
-
-fairseq-preprocess \
-    --only-source \
-    --trainpref "$DATA_DIR/train.input1.bpe" \
-    --validpref "$DATA_DIR/dev.input1.bpe" \
-    --destdir "$OUTPUT_DIR/input1" \
     --workers 60 \
     --srcdict dict.txt
 
