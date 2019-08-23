@@ -4,12 +4,28 @@ from fairseq.data.data_utils import collate_tokens
 import nltk
 import random
 
+# DOWNLOAD:
+# EXTRACT: tar -xvzf airbnb_model.tar.gz
+# MAKE SURE MODEL_DIR is correct
+
+# DEPENDENCIES:
+# pip install fairseq
+# pip install nltk
+# import nltk
+# nltk.download('punkt')
+
+## USAGE:
+# from run_inf import Roberta
+# model = Roberta(use_gpu=False, model_dir='./airbnb_train/')
+# label = model.classify(row['text'])
+
 
 MODEL_DIR = './airbnb_train/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
 CLASSES = ['NOT_GREAT', 'GREAT']
 
 CHUNK_SIZE=3
+
 
 class Roberta (object):
   def __init__(self,model_dir=MODEL_DIR,ckpt_file=CHECKPOINT_FILE,
@@ -37,14 +53,4 @@ class Roberta (object):
         buffer = [buffer[random.randint(0,CHUNK_SIZE-1)]]
     chunks.append(" ".join(buffer))
     return chunks
-
-  #
-  # def get_embedding(self, sentences, pooling_strategy='cls'):
-  #   roberta = self.model
-  #   batch = collate_tokens([roberta.encode(sentence) for sentence in sentences], pad_idx=1)
-  #   last_layer_features = roberta.extract_features(batch)
-  #   if pooling_strategy == 'cls':
-  #     return last_layer_features[0]
-  #   elif pooling_strategy == 'mean':
-  #     return last_layer_features.mean(dim=1)
 
