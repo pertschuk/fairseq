@@ -18,13 +18,16 @@ class Roberta (object):
     self.model.eval() # disable dropout
     if use_gpu: self.model.cuda()
 
-  def classify(self, review):
+  def classify(self, review, logits=False):
     reviews = self.batch_review(review)
     roberta = self.model
     tokens = map(lambda x: x if len(x) < 512 else x[:511], [roberta.encode(r) for r in reviews])
     batch = collate_tokens(list(tokens), pad_idx=1)
     label = roberta.predict('sentence_classification_head', batch)
-    return CLASSES[label.sum(dim=0).argmax()]
+    if logits:
+        return label.sum(dim=0).tolist()
+    else:
+        return CLASSES[label.sum(dim=0).argmax()]
 
   def batch_review(self, review):
     sents = nltk.sent_tokenize(review)
