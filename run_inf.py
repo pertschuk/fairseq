@@ -27,6 +27,9 @@ CLASSES = ['NOT_GREAT', 'GREAT']
 # how many sentences to run through at the same time. Tweak if running out of memory
 CHUNK_SIZE=3
 
+# set bias based on excel spreadsheet
+BIAS = 10
+
 
 class Roberta (object):
   def __init__(self,model_dir=MODEL_DIR,ckpt_file=CHECKPOINT_FILE,
@@ -44,7 +47,8 @@ class Roberta (object):
     if logits:
         return label.sum(dim=0).tolist()
     else:
-        return CLASSES[label.sum(dim=0).argmax()]
+        logits = label.sum(dim=0).tolist()
+        return CLASSES[0] if logits[0] > logits[1] + BIAS else CLASSES[1]
 
   def batch_review(self, review):
     sents = nltk.sent_tokenize(review)
