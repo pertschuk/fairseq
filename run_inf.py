@@ -4,9 +4,11 @@ from fairseq.data.data_utils import collate_tokens
 import nltk
 import random
 
-# DOWNLOAD:
+# DOWNLOAD: wget https://storage.googleapis.com/poloma-models/airbnb_model.tar.gz
 # EXTRACT: tar -xvzf airbnb_model.tar.gz
-# MAKE SURE MODEL_DIR is correct
+
+# MAKE SURE model directory points to where you downloaded the model
+MODEL_DIR = './airbnb_train/'
 
 # DEPENDENCIES:
 # pip install fairseq
@@ -17,13 +19,12 @@ import random
 ## USAGE:
 # from run_inf import Roberta
 # model = Roberta(use_gpu=False, model_dir='./airbnb_train/')
-# label = model.classify(row['text'])
+# label = model.classify(review)
 
-
-MODEL_DIR = './airbnb_train/'
 CHECKPOINT_FILE = 'checkpoint_best.pt'
 CLASSES = ['NOT_GREAT', 'GREAT']
 
+# how many sentences to run through at the same time. Tweak if running out of memory
 CHUNK_SIZE=3
 
 
