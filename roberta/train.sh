@@ -8,7 +8,9 @@ export NUM_CLASSES=3
 export MAX_SENTENCES=8        # Batch size.
 export ROBERTA_PATH=roberta.large/model.pt
 
-CUDA_VISIBLE_DEVICES=0 python train.py airbnb_train/ \
+export DATA_DIR=fever_train
+
+CUDA_VISIBLE_DEVICES=0 python train.py $DATA_DIR \
     --restore-file $ROBERTA_PATH \
     --max-positions 512 \
     --max-sentences $MAX_SENTENCES \
