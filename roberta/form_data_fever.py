@@ -15,7 +15,7 @@ def main(args):
       labelMap[label] = i
     with open(fname) as file:
       for row in csv.reader(file, delimiter='\t'):
-        samples.append((row[1], row[2], labelMap[row[3]]))
+        samples.append((row[0], row[1], labelMap[row[2]]))
 
     random.shuffle(samples)
     out_fname = 'train' if split == 'train' else 'dev'
