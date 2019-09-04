@@ -9,7 +9,7 @@ def main(args):
   for split in ['train', 'test']:
     samples = []
     fname = os.path.join(args.datadir, split + '.tsv')
-    labels = ['supports', 'refutes', 'not enough info']
+    labels = ['SUPPORTS', 'REFUTES', 'NOT ENOUGH INFO']
     labelMap = dict()
     for i, label in enumerate(labels):
       labelMap[label] = i
