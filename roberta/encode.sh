@@ -7,7 +7,7 @@ export OUTPUT_DIR=fever_train
 export DATA_DIR=fever
 
 for SPLIT in train dev; do
-    for INPUT in 0; do
+    for INPUT in 0 1; do
         python -m examples.roberta.multiprocessing_bpe_encoder \
             --encoder-json encoder.json \
             --vocab-bpe vocab.bpe \
@@ -27,6 +27,14 @@ fairseq-preprocess \
     --trainpref "$DATA_DIR/train.input0.bpe" \
     --validpref "$DATA_DIR/dev.input0.bpe" \
     --destdir "$OUTPUT_DIR/input0" \
+    --workers 60 \
+    --srcdict dict.txt
+
+fairseq-preprocess \
+    --only-source \
+    --trainpref "$DATA_DIR/train.input1.bpe" \
+    --validpref "$DATA_DIR/dev.input1.bpe" \
+    --destdir "$OUTPUT_DIR/input1" \
     --workers 60 \
     --srcdict dict.txt
 
