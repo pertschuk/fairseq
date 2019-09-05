@@ -27,7 +27,7 @@ def main():
     ids.append(id)
     claims.append(claim)
     evidences.append(evidence)
-    if len(claims) > 8:
+    if len(claims) > 4:
       print(claims)
       print(evidences)
       labels = model.classify_fever(claims, evidences)
