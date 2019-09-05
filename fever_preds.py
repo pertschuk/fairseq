@@ -19,10 +19,17 @@ def main():
                     maxbuff=50000,  # set buffer size to be held in memory
                     batchsize=100,
                  host=PSQL_HOST)  # set batchsize to send to postgres
+
+  claims = evidences = ids = []
   for id, claim, evidence in get_claims(1000):
-    label = model.classify_fever([claim], [evidence])[0]
-    print(label)
-    b.append((id, label))
+    ids.append(id)
+    claims.append(claim)
+    evidences.append(evidence)
+    if len(claims) > 8:
+      labels = model.classify_fever(claims, evidences)
+      for id, label in zip(ids, labels):
+        b.append((id, label))
+      claims = evidences = ids = []
 
 
 if __name__ == '__main__':
