@@ -12,7 +12,7 @@ def get_claims(n=None):
   return rows
 
 def main():
-  model = Roberta()
+  model = Roberta(model_dir='./fever_train')
   b = PolomaBuff('fever.test_preds',
                     workers=4,  # set number of processes
                     maxconn=8,  # set maximum postgres connections
