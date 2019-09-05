@@ -1,4 +1,4 @@
-from roberta import Roberta
+from fairseq.roberta import Roberta
 from polomapy import PolomaConn, PolomaBuff
 
 PSQL_HOST = "54.172.249.216"
