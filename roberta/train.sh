@@ -5,7 +5,7 @@ export TOTAL_NUM_UPDATES=100000
 export WARMUP_UPDATES=7432      # 6 percent of the number of updates
 export LR=1e-05                # Peak LR for polynomial LR scheduler.
 export NUM_CLASSES=3
-export MAX_SENTENCES=8        # Batch size.
+export MAX_SENTENCES=4        # Batch size.
 export ROBERTA_PATH=roberta.large/model.pt
 
 export DATA_DIR=fever_train
