@@ -1,5 +1,5 @@
 from roberta.roberta import Roberta
-from base.database import PolomaConn, PolomaBuff
+from polomapy import PolomaConn, PolomaBuff
 
 PSQL_HOST = "54.172.249.216"
 
