@@ -17,7 +17,8 @@ def main():
                     workers=4,  # set number of processes
                     maxconn=8,  # set maximum postgres connections
                     maxbuff=50000,  # set buffer size to be held in memory
-                    batchsize=100)  # set batchsize to send to postgres
+                    batchsize=100,
+                 host=PSQL_HOST)  # set batchsize to send to postgres
   for id, claim, evidence in get_claims(1000):
     label = model.classify_fever([claim], [evidence])[0]
     b.append((id, label))
