@@ -21,6 +21,7 @@ def main():
                  host=PSQL_HOST)  # set batchsize to send to postgres
   for id, claim, evidence in get_claims(1000):
     label = model.classify_fever([claim], [evidence])[0]
+    print(label)
     b.append((id, label))
 
 
