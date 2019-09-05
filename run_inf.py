@@ -25,7 +25,7 @@ CHECKPOINT_FILE = 'checkpoint_best.pt'
 CLASSES = ['NOT_GREAT', 'GREAT']
 
 # how many sentences to run through at the same time. Tweak if running out of memory
-CHUNK_SIZE=3
+CHUNK_SIZE=4
 
 # set bias based on excel spreadsheet
 BIAS = 10
